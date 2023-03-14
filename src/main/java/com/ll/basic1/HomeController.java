@@ -2,6 +2,7 @@ package com.ll.basic1;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,6 +101,26 @@ public class HomeController {
 
         return "%d번 사람이 삭제되었습니다.".formatted(id);
     }
+
+    @GetMapping("/home/modifyPerson")
+    @ResponseBody
+    public String showModifyPerson(int id, String name, int age) {
+        People found = list
+                .stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
+
+        //boolean idExists = list.contains(id);
+
+        if (found == null) {
+            return "%d번 사람이 존재하지 않습니다.".formatted(id);
+        }
+
+        found.setName(name);
+        found.setAge(age);
+        return "%d번 사람이 수정되었습니다.".formatted(id);
+    }
 }
 
 @AllArgsConstructor
@@ -108,7 +129,9 @@ public class HomeController {
 class People {
     private int id;
     private static int lastId = 0;
+    @Setter
     private String name;
+    @Setter
     private int age;
 
     People(String name, int age) {

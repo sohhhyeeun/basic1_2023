@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller //개발자가 스프링부트에게 말함.(아래 있는 HomeController는 컨트롤러임.)
 public class HomeController {
+    private int num;
+
+    public HomeController() {
+        num = -1;
+    }
+
     @GetMapping("/home/main")
     //개발자가 스프링부트에게 말함.(이런 요청이 오면 아래 메서드를 실행)
     @ResponseBody
@@ -30,12 +36,12 @@ public class HomeController {
         return "즐거웠습니다.";
     }
 
-    int num = 0;
+    //int num = 0;
     @GetMapping("/home/increase")
     //개발자가 스프링부트에게 말함.(이런 요청이 오면 아래 메서드를 실행)
     @ResponseBody
     //아래 메서드를 실행한 후 그 리턴값을 응답으로 삼으라고 말함.
-    public int showIncrease() {
+    public int showIncrease() { //리턴되는 int 값은 String 화 되어서 고객(브라우저)에세 전달됨.
         num++;
         return num;
     }

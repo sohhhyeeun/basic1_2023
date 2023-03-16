@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.RequestScope;
 
-@Component
-@RequestScope //이 객체는 매 요청마다 생성
 @Controller
 public class MemberController {
     private final MemberService memberService;

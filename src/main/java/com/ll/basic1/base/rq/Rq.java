@@ -13,7 +13,8 @@ public class Rq {
     private final HttpServletResponse resp;
 
     public boolean removeCookie(String name) {
-        if (req.getCookies() != null) {
+        /*
+        if (req.getCookies() != null) { //쿠키가 있는지 체크
             Arrays.stream(req.getCookies())
                     .filter(cookie -> cookie.getName().equals(name))
                     .forEach(cookie -> {
@@ -23,7 +24,20 @@ public class Rq {
 
             return Arrays.stream(req.getCookies())
                     .filter(cookie -> cookie.getName().equals(name))
-                    .count() > 0;
+                    .count() > 0; //전체 중 filter를 통과한
+        }
+        */
+
+        Cookie cookie = Arrays.stream(req.getCookies())
+                .filter(c -> c.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+
+        if (cookie != null) {
+            cookie.setMaxAge(0);
+            resp.addCookie(cookie);
+
+            return true;
         }
 
         return false;

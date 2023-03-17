@@ -21,14 +21,14 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) //2
 public class Article {
     @Id
     @GeneratedValue(strategy = IDENTITY) //Auto_Increment
     private long id;
-    @CreatedDate
+    @CreatedDate //1
     private LocalDateTime createDate;
-    @LastModifiedDate
+    @LastModifiedDate //1
     private LocalDateTime modifyDate;
     private String title;
     private String body;

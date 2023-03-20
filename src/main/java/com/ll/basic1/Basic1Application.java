@@ -12,4 +12,7 @@ public class Basic1Application {
 		SpringApplication.run(Basic1Application.class, args);
 	}
 
+	void test() {
+
+	}
 }

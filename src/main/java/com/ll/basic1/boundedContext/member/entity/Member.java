@@ -1,11 +1,8 @@
 package com.ll.basic1.boundedContext.member.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.*;
 //import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,10 +12,12 @@ import java.time.LocalDateTime;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @ToString
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = IDENTITY) //Auto_Increment
